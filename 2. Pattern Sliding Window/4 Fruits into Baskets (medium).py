@@ -7,6 +7,10 @@
 #
 # Write a function to return the maximum number of fruits in both the baskets.
 def fruits_into_basket(fruits: list) -> int:
+    """
+    Time: O(n+n)
+    Space: O(1)
+    """
     fruit_frequency = {}
     window_start = max_length = 0
     for window_end in range(len(fruits)):
