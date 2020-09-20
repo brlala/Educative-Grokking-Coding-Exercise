@@ -17,7 +17,7 @@ def triplets_with_smaller_sum(arr, target):
             if current_sum >= target:
                 right -= 1
             else:
-                count += (right-left)
+                count += right - left
                 left += 1
     return count
 
