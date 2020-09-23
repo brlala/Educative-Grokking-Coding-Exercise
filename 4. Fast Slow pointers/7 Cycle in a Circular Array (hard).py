@@ -13,8 +13,8 @@ from __future__ import annotations
 
 def circular_array_loop_exist(arr):
     """
-    Time:
-    Space:
+    Time: O(N2)
+    Space: O(1)
     """
     for i in range(len(arr)):
         is_forward = arr[i] >= 0
