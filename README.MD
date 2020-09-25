@@ -61,3 +61,21 @@
 
     ...
 ```
+
+# Pattern reversing linked list
+```
+    prev = None
+    while current != None:
+        next = current.next
+        current.next = prev
+        prev = current
+        current = next
+    return prev
+
+previous is now the head, current is now the tail after traversal
+
+Traversing linked list:
+        while current is not None and i < k:
+            previous = current
+            current = current.next
+```
