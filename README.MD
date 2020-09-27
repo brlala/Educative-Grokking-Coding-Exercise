@@ -80,7 +80,12 @@ Traversing linked list:
             current = current.next
 ```
 
-# BFS
+# Binary tree BFS
+1. use a double ended queue
+2. get the level size
+3. loop the level size
+4. popleft node
+5. append left and right node
 ```
     result = []
     if root is None:
@@ -102,4 +107,72 @@ Traversing linked list:
                 queue.append(current_node.right)
         result.append(current_level_values)
     return result
+```
+
+# Binary Tree DFS
+1. create a helper method
+2. define a stop condition
+3. else traverse left + right node
+4. backtrack when going up recursive calls(example 1/5)/return a specific condition(example 2)
+
+Advance: (refer example 6, 7)
+1. what do you want to return when you reach the end (stop condition)
+2. traverse left + right
+3. what do you want to return when you leave a node
+4. keep a global variable if needed
+```
+def find_paths(root, sum):
+    all_paths = []
+    find_paths_recursive(root, sum, [], all_paths)
+    return all_paths
+
+
+def find_paths_recursive(current_node: TreeNode, sum, current_path: list, all_paths: list):
+    """
+    Time: O(N)
+    Space: O(N) worst case if tree is a linked list
+    """
+    if current_node is None:
+        return None
+
+    # add the current node to the path
+    current_path.append(current_node.val)
+
+    # if the current node is a leaf and its value is equal to the sum, save the current path
+    if current_node.val == sum and current_node.left is None and current_node.right is None:
+        all_paths.append(list(current_path))
+    else:
+        # traverse the left sub-tree
+        find_paths_recursive(current_node.left, sum - current_node.val, current_path, all_paths)
+        # traverse the right sub-tree
+        find_paths_recursive(current_node.right, sum - current_node.val, current_path, all_paths)
+
+    # remove the current node from the path to backtrack,
+    # we need to remove the current node while we are going up the recursive call stack
+    del current_path[-1]
+```
+```
+def find_max_paths(root: TreeNode) -> int:
+    """
+    https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/603423/Python-Recursion-stack-thinking-process-diagram
+    :param root:
+    :return:
+    """
+    max_path = float("-inf")  # placeholder to be updated
+
+    def get_max_gain(current_node):
+        nonlocal max_path  # This tells that max_path is not a local variable
+        if current_node is None:
+            return 0
+
+        gain_on_left = max(get_max_gain(current_node.left), 0)  # Read the part important observations
+        gain_on_right = max(get_max_gain(current_node.right), 0)  # Read the part important observations
+
+        current_max_path = current_node.val + gain_on_left + gain_on_right  # Read first three images of going down the recursion stack
+        max_path = max(max_path, current_max_path)  # Read first three images of going down the recursion stack
+
+        return current_node.val + max(gain_on_left, gain_on_right)  # Read the last image of going down the recursion stack
+
+    get_max_gain(root)  # Starts the recursion chain
+    return max_path
 ```
