@@ -176,3 +176,32 @@ def find_max_paths(root: TreeNode) -> int:
     get_max_gain(root)  # Starts the recursion chain
     return max_path
 ```
+# Two Heap Problem
+Python always uses min heap, so when putting into max heap you need to add `-`
+1. choose one heap as main, add to max heap if num is smaller than biggest number in max heap
+2. balance the heap
+```
+class MedianOfAStream:
+    max_heap = []  # containing first half of numbers
+    min_heap = []  # containing second half of numbers
+
+    def insert_num(self, num):
+        if not self.max_heap or -self.max_heap[0] >= num:
+            heappush(self.max_heap, -num)
+        else:
+            heappush(self.min_heap, num)
+
+        # either both the heaps will have equal number of elements or max heap will have one more element than min heap
+        if len(self.max_heap) > len(self.min_heap) + 1:
+            heappush(self.min_heap, -heappop(self.max_heap))
+        elif len(self.max_heap) < len(self.min_heap):
+            heappush(self.max_heap, -heappop(self.min_heap))
+
+    def find_median(self):
+        if len(self.max_heap) == len(self.min_heap):
+            # we have even numbers, take the middle of two elements
+            return (-self.max_heap[0]+self.min_heap[0])/2
+
+        # because max heap has one more element than the mean heap
+        return -self.max_heap[0]
+```
