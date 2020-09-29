@@ -205,3 +205,24 @@ class MedianOfAStream:
         # because max heap has one more element than the mean heap
         return -self.max_heap[0]
 ```
+
+# Binary Search
+1. set start and end
+2. constantly iterating the middle while reducing the range of start and end
+```
+def binary_search(arr):
+    start, end = 0, len(arr) - 1
+
+    while start <= end:
+        mid = (start + end) // 2
+        if key < arr[mid]:
+            end = mid - 1
+        elif key > arr[mid]:
+            start = mid + 1
+        else:
+            return mid
+
+    # since start<= end, the final iteration will be start==end+1, we are not able to find hence the next big number
+    # will just be start
+    return start  # use end if it is to find the floor
+```
