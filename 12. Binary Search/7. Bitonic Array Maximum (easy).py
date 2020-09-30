@@ -4,6 +4,10 @@
 
 
 def find_max_in_bitonic_array(arr):
+    """
+    Time: O(logN)
+    Space: O(1)
+    """
     start, end = 0, len(arr) - 1
     while start < end:
         mid = start + (end - start) // 2

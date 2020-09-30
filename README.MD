@@ -209,6 +209,8 @@ class MedianOfAStream:
 # Binary Search
 1. set start and end
 2. constantly iterating the middle while reducing the range of start and end
+
+see example 8,9,10 for modified binary search
 ```
 def binary_search(arr):
     start, end = 0, len(arr) - 1
@@ -226,3 +228,24 @@ def binary_search(arr):
     # will just be start
     return start  # use end if it is to find the floor
 ```
+
+# Bitwise operator(exclusive or)
+1. take first element and xor everything
+2. xor two of the same elements will result in 0
+```
+def find_missing_number(arr):
+    n = len(arr) + 1
+    # x1 represents XOR of all values from 1 to n
+    x1 = 1
+    for i in range(2, n+1):
+        x1 = x1 ^ i
+    # x2 represents XOR of all values in arr
+    x2 = arr[0]
+    for i in range(1, n-1):
+        x2 = x2 ^ arr[i]
+
+    # missing number is the xor of x1 and x2
+    return x1 ^ x2
+```
+
+# 
