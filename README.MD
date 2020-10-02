@@ -1,3 +1,5 @@
+from heapq import heappop, heappush
+from collections import defaultdict, counter, deque
 # Pattern sliding window template
 ```
     window_start = 0
@@ -248,4 +250,52 @@ def find_missing_number(arr):
     return x1 ^ x2
 ```
 
-# 
+# Top K Numbers
+1. using a heap to track the largest/smallest number
+2. basic optimization for space complexity is to only keep K elements in the heap
+3. you can make use of classes with __lt__ method with heappush/heappop(refer example 12)
+4. remember to negate the value if you're using a max_heap
+```
+def find_k_largest_numbers(nums, k):
+    """
+    Time: O(K*logK) insert k numbers to heap + O((N-K)*logK) iterate through the remaining numbers
+    Space: O(K)
+    """
+    result = []
+
+    for i in range(k):
+        heappush(result, nums[i])
+    for i in range(k, len(nums)):
+        if nums[i] > result[0]:
+            heappop(result)
+            heappush(result, nums[i])
+    return result
+```
+
+# K-way merge
+1. use a heap to track each item in the list, append the index as well
+2. if there's a requirement to have one of each list, you can add the condition `while len(min_heap) == k` example 4
+```
+def find_Kth_smallest(lists, k):
+    """
+    Time: O(K∗logM) going through at most K elements, M is the total number of input array
+    Space: O(M)
+    """
+    min_heap = []
+
+    # put the first element in the heap
+    for i in range(len(lists)):
+        heappush(min_heap, (lists[i][0], 0, lists[i]))
+
+    # take the smallest(top) element and if the running count is equal to k, return the number
+    number_count = number = 0
+    while min_heap:
+        number, i, num_list = heappop(min_heap)
+        number_count += 1
+        if number_count == k:
+            break
+        # if the array of the top has more elements, add next element to heap
+        if len(num_list) > i + 1:
+            heappush(min_heap, (num_list[i+1], i+1, num_list))
+    return number
+```
