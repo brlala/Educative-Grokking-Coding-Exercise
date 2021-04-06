@@ -22,6 +22,8 @@ def has_cycle(head: Node):
             slow = head
             while slow != fast:
                 # why this works explanation https://stackoverflow.com/a/10886319/10262825
+                # Floyd's cycle algorithm
+                # https://cs.stackexchange.com/questions/10360/floyds-cycle-detection-algorithm-determining-the-starting-point-of-cycle
                 # https://www.youtube.com/watch?v=9YTjXqqJEFE
                 slow = slow.next
                 fast = fast.next

@@ -26,7 +26,7 @@ def merge(intervals: List[Interval]):
     start = intervals[0].start
     end = intervals[0].end
 
-    for index, itv in enumerate(intervals[1:], 1):
+    for itv in intervals[1:]:
         if itv.start <= end:  # overlapping
             end = max(itv.end, end)
         else:

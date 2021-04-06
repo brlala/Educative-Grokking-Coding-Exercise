@@ -65,7 +65,7 @@ def main():
     print("String permutations are: " + str(generate_valid_parentheses(2)))
     print("String permutations are: " + str(generate_valid_parentheses(3)))
     print("String permutations are: " + str(generate_valid_parentheses1(2)))
-    print("String permutations are: " + str(generate_valid_parentheses1(3)))
+    print("String permutations are: " + str(generate_valid_parentheses1(4)))
 
 
 main()
