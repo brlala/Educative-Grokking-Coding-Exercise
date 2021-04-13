@@ -40,6 +40,7 @@ class Solution:
 
     def pathSum(self, root, target):
         """
+        https://leetcode.com/problems/path-sum-iii/discuss/141424/Python-step-by-step-walk-through.-Easy-to-understand.-Two-solutions-comparison.-%3A-)
         This is O(n) linear method
         """
         self.numOfPaths = 0
@@ -48,7 +49,7 @@ class Solution:
         return self.numOfPaths
 
     def memoization(self, node, target, currPathSum, cache):
-        # exit conidtion:
+        # exit condition:
         if not node:
             return
         currPathSum += node.val
