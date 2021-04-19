@@ -23,6 +23,7 @@ class MedianFinder:
             return (-self.max_heap[0] + self.min_heap[0]) / 2
         return -self.max_heap[0]
 
+
 class MedianFinder:
     def __init__(self):
         self.heaps = [], []
