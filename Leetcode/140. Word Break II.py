@@ -1,5 +1,5 @@
 class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+    def wordBreak(self, s: str, wordDict: list[str]) -> list[str]:
         """
         https://leetcode.com/problems/word-break-ii/discuss/44368/Python-easy-to-understand-solutions-(memorization%2BDFS-DP%2BDFS)
         """
@@ -19,3 +19,6 @@ class Solution:
         memo[s] = res
         return res
 
+
+a = Solution()
+a.wordBreak(s="catsanddog", wordDict=["cat", "cats", "and", "sand", "dog"])

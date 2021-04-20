@@ -1,5 +1,6 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        # monotonic queue
         if not nums: return
         n = len(nums)
         mono_queue = deque()

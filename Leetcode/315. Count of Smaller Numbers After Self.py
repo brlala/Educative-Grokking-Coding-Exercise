@@ -1,6 +1,9 @@
-# modified binary sort to count smaller after self
+# modified merge sort to count smaller after self
 class Solution:
     def countSmaller(self, nums):
+        """
+        Refer to #493 Reverse Pairs
+        """
         def sort(enums):  # index, value
             half = len(enums)//2
             if half:
